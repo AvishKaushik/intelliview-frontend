@@ -1,37 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IntelliView Frontend
 
-## Getting Started
+IntelliView is your AI-powered interview companion. This frontend application is built with **Next.js 14**, **Tailwind CSS**, **ShadCN**, and **Framer Motion** to deliver a modern, responsive, and interactive interface. It connects to a serverless backend powered by AWS Lambda, DynamoDB, Amazon Bedrock, and other AWS services to simulate technical interviews and deliver real-time AI feedback.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+* 🎙️ Real-Time Interview Simulation (DSA, System Design, Behavioral)
+* 🧠 AI-Powered Feedback via Claude (Amazon Bedrock)
+* 📈 Skill Analytics Dashboard (aggregated feedback & trends)
+* 🔐 Secure Auth with Amazon Cognito
+* 🎨 Animated UI with Framer Motion & Tailwind
+* 💾 Persistent session tracking and review history
+
+---
+
+## 📁 Project Structure
+
+```
+intelliview-frontend/
+├── app/               # Next.js 14 app directory (routing)
+│   ├── review/        # Session review page
+│   ├── sessions/      # Overall sessions page
+│   ├── app/           # Main dashboard
+│   ├── interview/     # Interview Page
+│   └── page.tsx       # Landing page
+├── components/        # Shared UI components
+├── lib/               # OIDC & API helpers
+├── public/            # Static assets
+├── styles/            # Global Tailwind styles
+├── next.config.js     # Next.js config
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Built With
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Frontend:** Next.js 14, React, TypeScript
+* **Styling:** Tailwind CSS, ShadCN, Framer Motion
+* **Authentication:** Amazon Cognito
+* **Backend (External):** AWS Lambda, DynamoDB, API Gateway, EventBridge, Amazon Bedrock (Claude)
+* **Deployment:** Vercel (or any other platform)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🧪 Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Create a `.env.local` file with the following:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```env
+NEXT_PUBLIC_LAMBDA_ENDPOINT=https://your-api-url
+NEXT_PUBLIC_COGNITO_DOMAIN=https://your-cognito-domain
+NEXT_PUBLIC_CLIENT_ID=your-client-id
+NEXT_PUBLIC_REDIRECT_IN=http://localhost:3000/app
+NEXT_PUBLIC_REDIRECT_OUT=http://localhost:3000
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧪 Running Locally
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# intelliview-frontend
+```bash
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000` in your browser.
+
+---
+
+## 🔍 Key Pages
+
+* `/` – Landing Page
+* `/app` – Main Dashboard (post-login)
+* `/review?sessionId=...` – Session review view
+* `/sessions` – Overall sessions display
+
+---
+
+## 🔐 Authentication Flow
+
+IntelliView uses Amazon Cognito for OAuth2 login. Upon login, a JWT token is saved and passed in requests to authorize users and fetch their session/feedback data.
+
+---
+
+## 🧠 Feedback + Analytics Flow
+
+* **Interview Session:** Stored in DynamoDB by a Lambda function.
+* **Claude Feedback:** Triggered post-session to evaluate user answers.
+* **Review Page:** Fetches message history + Claude analysis.
+* **Skill Dashboard:** Aggregates data across sessions using another Lambda.
+
+---
+
+## 📸 Preview
+
+<img width="1799" alt="image" src="https://github.com/user-attachments/assets/004d486f-d8da-4ba0-8b4d-c5daba3d558c" />
+![image](https://github.com/user-attachments/assets/579884fa-9a5a-498b-90df-9f0659e03ca3)
+<img width="1799" alt="image" src="https://github.com/user-attachments/assets/b1cad959-f218-480a-8534-a77fb6e21201" />
+
+
+---
+
+## 🌐 Live Demo
+
+[https://intelliview-frontend.vercel.app/app](https://intelliview-frontend.vercel.app/app)
+
+## 🧠 Backend Repository
+
+[https://github.com/AvishKaushik/intelliview-backend](https://github.com/AvishKaushik/intelliview-backend)
+
+---
+
+## 📄 License
+
+MIT License
+
+---
+
+## ✨ Contributors
+
+* Avish Kaushik
+
+PRs welcome 🙌
