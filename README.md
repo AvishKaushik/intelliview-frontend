@@ -95,7 +95,7 @@ IntelliView uses Amazon Cognito for OAuth2 login. Upon login, a JWT token is sav
 ## 📸 Preview
 
 <img width="1799" alt="image" src="https://github.com/user-attachments/assets/004d486f-d8da-4ba0-8b4d-c5daba3d558c" />
-![image](https://github.com/user-attachments/assets/579884fa-9a5a-498b-90df-9f0659e03ca3)
+<img width="1799" alt="image" src="https://github.com/user-attachments/assets/bc1e8518-f92f-48df-9cee-1ad1c62e071d" />
 <img width="1799" alt="image" src="https://github.com/user-attachments/assets/b1cad959-f218-480a-8534-a77fb6e21201" />
 
 
