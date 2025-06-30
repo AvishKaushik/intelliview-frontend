@@ -91,7 +91,7 @@ export default function InterviewPage() {
       setMessages([{ role: "assistant", content: data.message }]);
     } catch (e) {
       setMessages([
-        { role: "assistant", content: "⚠️ Failed to start interview." },
+        { role: "assistant", content: `⚠️ Failed to start interview. ${(e as Error).message} ` },
       ]);
     }
   }

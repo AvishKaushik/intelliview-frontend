@@ -1,7 +1,7 @@
 const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
-const REDIRECT_IN = process.env.NEXT_PUBLIC_REDIRECT_IN;
-const REDIRECT_OUT = process.env.NEXT_PUBLIC_REDIRECT_OUT;
+const REDIRECT_IN = process.env.NEXT_PUBLIC_REDIRECT_IN || '';
+const REDIRECT_OUT = process.env.NEXT_PUBLIC_REDIRECT_OUT || '';
 
 const TOKEN_KEY = "intelli_tokens";
 
@@ -62,6 +62,9 @@ export async function handleAuthRedirect() {
 }
 
 async function exchangeCodeForTokens(code: string): Promise<Tokens> {
+  if (!CLIENT_ID) {
+    throw new Error("CLIENT_ID is not defined");
+  }
   const body = new URLSearchParams({
     grant_type: "authorization_code",
     client_id: CLIENT_ID,
@@ -69,6 +72,7 @@ async function exchangeCodeForTokens(code: string): Promise<Tokens> {
     redirect_uri: REDIRECT_IN,
   });
 
+  
   const res = await fetch(`https://${DOMAIN}/oauth2/token`, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
